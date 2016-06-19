@@ -1,0 +1,1 @@
+This application allow users to configure the GPIO pins on the RPI on an interactive way

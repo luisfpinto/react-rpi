@@ -1,0 +1,171 @@
+/*General*/
+
+
+.configuration {
+   float: right;
+   margin-right: 400px;
+}
+
+.pinout {
+   float: left;
+   margin-left: 200px;
+}
+
+
+ /*pinout*/
+
+ .name:hover {
+   background-color: grey;
+ }
+
+ .gpio_outer {
+   background: green;
+   border-radius: 50%;
+   height: 26px;
+   width: 26px;
+   position: relative;
+ }
+ .gpio_inner {
+   position: absolute;
+   background: white;
+   border-radius: 50%;
+   height: 14px;
+   width: 14px;
+   top: 50%;
+   left: 50%;
+   margin: -7px 0px 0px -7px;
+ }
+
+ /*Ground*/
+ .ground_outer {
+   background: black;
+   border-radius: 50%;
+   height: 26px;
+   width: 26px;
+   position: relative;
+ }
+ .ground_inner {
+   position: absolute;
+   background: white;
+   border-radius: 50%;
+   height: 14px;
+   width: 14px;
+   top: 50%;
+   left: 50%;
+   margin: -7px 0px 0px -7px;
+ }
+
+ /*Dc*/
+ .dc_outer {
+   background: red;
+   border-radius: 50%;
+   height: 26px;
+   width: 26px;
+   position: relative;
+ }
+ .dc_inner {
+   position: absolute;
+   background: white;
+   border-radius: 50%;
+   height: 14px;
+   width: 14px;
+   top: 50%;
+   left: 50%;
+   margin: -7px 0px 0px -7px;
+ }
+
+ /*i2c*/
+ .i2c_outer {
+   background: blue;
+   border-radius: 50%;
+   height: 26px;
+   width: 26px;
+   position: relative;
+ }
+ .i2c_inner {
+   position: absolute;
+   background: white;
+   border-radius: 50%;
+   height: 14px;
+   width: 14px;
+   top: 50%;
+   left: 50%;
+   margin: -7px 0px 0px -7px;
+ }
+
+/*3.3V*/
+ .v33_outer {
+   background: orange;
+   border-radius: 50%;
+   height: 26px;
+   width: 26px;
+   position: relative;
+ }
+ .v33_inner {
+   position: absolute;
+   background: white;
+   border-radius: 50%;
+   height: 14px;
+   width: 14px;
+   top: 50%;
+   left: 50%;
+   margin: -7px 0px 0px -7px;
+ }
+
+/*e2*/
+ .e2_outer {
+   background: yellow;
+   border-radius: 50%;
+   height: 26px;
+   width: 26px;
+   position: relative;
+ }
+ .e2_inner {
+   position: absolute;
+   background: white;
+   border-radius: 50%;
+   height: 14px;
+   width: 14px;
+   top: 50%;
+   left: 50%;
+   margin: -7px 0px 0px -7px;
+ }
+
+/*e2*/
+ .spi_outer {
+   background: pink;
+   border-radius: 50%;
+   height: 26px;
+   width: 26px;
+   position: relative;
+ }
+ .spi_inner {
+   position: absolute;
+   background: white;
+   border-radius: 50%;
+   height: 14px;
+   width: 14px;
+   top: 50%;
+   left: 50%;
+   margin: -7px 0px 0px -7px;
+ }
+
+
+/*e2*/
+ .trd_outer {
+   background: brown;
+   border-radius: 50%;
+   height: 26px;
+   width: 26px;
+   position: relative;
+ }
+ .trd_inner {
+   position: absolute;
+   background: white;
+   border-radius: 50%;
+   height: 14px;
+   width: 14px;
+   top: 50%;
+   left: 50%;
+   margin: -7px 0px 0px -7px;
+ }
