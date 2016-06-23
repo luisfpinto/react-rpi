@@ -19712,7 +19712,11 @@ var Container = function (_React$Component) {
 	function Container() {
 		_classCallCheck(this, Container);
 
-		return _possibleConstructorReturn(this, Object.getPrototypeOf(Container).apply(this, arguments));
+		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Container).call(this));
+
+		_this.state = { pin: 'none',
+			name: 'none' };
+		return _this;
 	}
 
 	_createClass(Container, [{
@@ -19722,19 +19726,47 @@ var Container = function (_React$Component) {
 				'div',
 				null,
 				React.createElement(
-					'p',
-					null,
-					'Pin Selected: ',
-					this.pin
+					'form',
+					{ className: 'configuration', onSubmit: this._handleSubmit.bind(this) },
+					React.createElement(
+						'p',
+						null,
+						'Select a Pin from draw'
+					),
+					React.createElement('input', { type: 'text', name: 'pin', value: this.state.name }),
+					React.createElement('input', { type: 'radio', name: 'action', value: 'read' }),
+					' Read',
+					React.createElement('input', { type: 'radio', name: 'action', value: 'write' }),
+					' Write',
+					React.createElement('input', { type: 'text', name: 'value' }),
+					React.createElement('input', { type: 'submit' })
 				),
 				React.createElement(_pinout.PinOut, { selectPin: this._selectPin.bind(this) })
 			);
 		}
 	}, {
 		key: '_selectPin',
-		value: function _selectPin(pin) {
-			this.pin = pin;
-			console.log(this.pin);
+		value: function _selectPin(pin, name) {
+			this.setState({ pin: pin, name: name });
+		}
+	}, {
+		key: '_handleSubmit',
+		value: function _handleSubmit() {
+
+			var formData = $('form').serializeArray();
+
+			var data = { pin: this.state.pin,
+				action: formData[1].value,
+				value: formData[2].value };
+
+			$.ajax({
+				type: "POST",
+				url: '/',
+				data: data,
+				success: function success(data) {
+					console.log('Success');
+				}
+			});
 		}
 	}]);
 
@@ -19782,7 +19814,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name', onClick: this._selectGPIO.bind(this, '3.3') },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 1, '3.3v') },
 						'3.3V Supply'
 					),
 					React.createElement(
@@ -19805,7 +19837,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 2, '5.5v') },
 						'5V Supply'
 					)
 				),
@@ -19814,7 +19846,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 3, 'GPIO02') },
 						'GPIO02'
 					),
 					React.createElement(
@@ -19837,7 +19869,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 4, '5v') },
 						'5V'
 					)
 				),
@@ -19846,7 +19878,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 5, 'GPIO03') },
 						'GPIO03'
 					),
 					React.createElement(
@@ -19869,7 +19901,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 6, 'Ground') },
 						'Ground'
 					)
 				),
@@ -19878,7 +19910,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 7, 'GPIO04') },
 						'GPIO04'
 					),
 					React.createElement(
@@ -19901,7 +19933,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 8, 'GPIO14') },
 						'GPIO14'
 					)
 				),
@@ -19910,7 +19942,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 9, 'Ground') },
 						'Ground'
 					),
 					React.createElement(
@@ -19933,7 +19965,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 10, 'GPIO15') },
 						'GPIO15'
 					)
 				),
@@ -19942,7 +19974,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 11, 'GPIO17') },
 						'GPIO17'
 					),
 					React.createElement(
@@ -19965,8 +19997,8 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
-						'#GPIO18'
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 12, 'GPIO18') },
+						'GPIO18'
 					)
 				),
 				React.createElement(
@@ -19974,7 +20006,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 13, 'GPIO27') },
 						'GPIO27'
 					),
 					React.createElement(
@@ -19997,7 +20029,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 14, 'Ground') },
 						'Ground'
 					)
 				),
@@ -20006,7 +20038,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 15, 'GPIO22') },
 						'GPIO22'
 					),
 					React.createElement(
@@ -20029,7 +20061,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 16, 'GPIO23') },
 						'GPIO23'
 					)
 				),
@@ -20038,7 +20070,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 17, '3.3v') },
 						'3.3V Supply'
 					),
 					React.createElement(
@@ -20061,7 +20093,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 18, 'GPIO24') },
 						'GPIO24'
 					)
 				),
@@ -20070,7 +20102,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 19, 'GPIO10') },
 						'GPIO10'
 					),
 					React.createElement(
@@ -20093,7 +20125,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 20, 'Ground') },
 						'Ground'
 					)
 				),
@@ -20102,7 +20134,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 21, 'GPIO09') },
 						'GPIO09'
 					),
 					React.createElement(
@@ -20125,7 +20157,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 22, 'GPIO25') },
 						'GPIO25'
 					)
 				),
@@ -20134,7 +20166,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 23, 'GPIO11') },
 						'GPIO11'
 					),
 					React.createElement(
@@ -20157,7 +20189,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 24, 'GPIO08') },
 						'GPIO08'
 					)
 				),
@@ -20166,7 +20198,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 25, 'Ground') },
 						'Ground'
 					),
 					React.createElement(
@@ -20189,7 +20221,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 27, 'GPIO07') },
 						'GPIO07'
 					)
 				),
@@ -20198,7 +20230,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 28, 'ID_SD(i2c)') },
 						'ID_SD(i2c)'
 					),
 					React.createElement(
@@ -20221,7 +20253,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 29, 'ID_SD(i2c)') },
 						'ID_SD(i2c)'
 					)
 				),
@@ -20230,7 +20262,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 30, 'GPIO05') },
 						'GPIO05'
 					),
 					React.createElement(
@@ -20253,7 +20285,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 31, 'Ground') },
 						'Ground'
 					)
 				),
@@ -20262,7 +20294,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 32, 'GPIO06') },
 						'GPIO06'
 					),
 					React.createElement(
@@ -20285,7 +20317,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 33, 'GPIO12') },
 						'GPIO12'
 					)
 				),
@@ -20294,7 +20326,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 34, 'GPIO13') },
 						'GPIO13'
 					),
 					React.createElement(
@@ -20317,7 +20349,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 35, 'Ground') },
 						'Ground'
 					)
 				),
@@ -20326,7 +20358,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 36, 'GPIO19') },
 						'GPIO19'
 					),
 					React.createElement(
@@ -20349,7 +20381,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 37, 'GPIO16') },
 						'GPIO16'
 					)
 				),
@@ -20358,7 +20390,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 38, 'GPIO26') },
 						'GPIO26'
 					),
 					React.createElement(
@@ -20381,7 +20413,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 39, 'GPIO20') },
 						'GPIO20'
 					)
 				),
@@ -20390,7 +20422,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					null,
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 40, 'Ground') },
 						'Ground'
 					),
 					React.createElement(
@@ -20413,7 +20445,7 @@ var PinOut = exports.PinOut = function (_React$Component) {
 					),
 					React.createElement(
 						'td',
-						{ className: 'name' },
+						{ className: 'name', onClick: this._selectGPIO.bind(this, 41, 'GPIO21') },
 						'GPIO21'
 					)
 				)
@@ -20421,8 +20453,8 @@ var PinOut = exports.PinOut = function (_React$Component) {
 		}
 	}, {
 		key: '_selectGPIO',
-		value: function _selectGPIO(pin) {
-			this.props.selectPin(pin);
+		value: function _selectGPIO(pin, name) {
+			this.props.selectPin(pin, name);
 		}
 	}]);
 
