@@ -24,13 +24,14 @@ app.post('/', function (req, res) {
 
 	var action = req.body.action
 	var pin = req.body.pin
+	var value = req.value
 
 	if(action === 'read') {
 		gpio.setup(pin, gpio.DIR_IN, helper.readInput(pin));
 	}
 
 	if(action === 'write') {
-		gpio.setup(pin, gpio.DIR_OUT, helper.write(pin));
+		gpio.setup(pin, gpio.DIR_OUT, helper.write(pin, value));
 
 	}
 })

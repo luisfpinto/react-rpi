@@ -10,9 +10,11 @@ helper.readInput = function (pin) {
     });
 }
 
-helper.write = function (pin) {
+helper.write = function (pin, value) {
 	console.log('Writing')
-    gpio.write(pin, true, function(err) {
+	console.log('Pin: ', pin)
+	console.log('Value: ', value)
+    gpio.write(pin, value, function(err) {
         if (err) throw err;
         console.log('Written to pin');
     });
