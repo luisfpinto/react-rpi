@@ -3,7 +3,7 @@ var app = express()
 var bodyParser = require('body-parser')
 
 //I|O GPIO
-var gpio = require('rpi-gpio');
+//var gpio = require('rpi-gpio');
 var helper = require('./src/helper') 
 
 app.use(bodyParser.json())
