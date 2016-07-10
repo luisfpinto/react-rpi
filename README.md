@@ -3,7 +3,7 @@
 
 This application allow users to configure the GPIO pins on the RPI on an interactive way. 
 
-This application has been made with node.js to run on your RPI. If you want to run locally see the instrucction at the bottom.
+This application has been made with node.js to run on your RPI. If you want to run locally on your laptop see the instrucction at the bottom.
 
 ###Getting Started
 
@@ -39,7 +39,9 @@ If you have tried to run this application on your laptop you have propably seen 
 ```
 
 The only thing you have to do to try this application on your laptop is comment ```var gpio = require('rpi-gpio'); ```
-on the helper.js file and index.js file 
+on:
+- helper.js
+- index.js 
 
 ## To do
 
