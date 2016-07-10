@@ -28,7 +28,7 @@ node index.js
 
 Access to http://localhost:8000 and then you will see:
 
-[react-rpi image](schema.png)
+![react-rpi image](schema.png)
 
 ###Run on your laptop
 
